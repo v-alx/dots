@@ -69,6 +69,14 @@ return {
         },
       })
 
+      vim.lsp.config('ts_ls', {
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config('html', {
+        capabilities = capabilities,
+        init_options = { provideFormatter = true },
+      })
       -- jdtls
       vim.lsp.enable 'jdtls'
 
@@ -89,15 +97,34 @@ return {
           end
         end,
       })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(event)
+          local bufmap = function(mode, rhs, lhs)
+            vim.keymap.set(mode, rhs, lhs, { buffer = event.buf })
+          end
+          -- defaults
+          bufmap('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>')
+          bufmap('n', 'grr', '<cmd>lua vim.lsp.buf.references()<cr>')
+          bufmap('n', 'gri', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+          bufmap('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<cr>')
+          bufmap('n', 'gra', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+          bufmap('n', 'gO', '<cmd>lua vim.lsp.buf.document_symbol()<cr>')
+          bufmap({ 'i', 's' }, '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+          --custom
+          bufmap('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
+          bufmap('n', 'grt', '<CMD>lua vim.lsp.buf.type_definition()<CR>')
+          bufmap('n', 'grd', '<CMD>lua vim.lsp.buf.declaration()<CR>')
+        end,
+      })
     end,
   },
   {
     'mason-org/mason.nvim',
   },
   {
-    'williamboman/mason-lspconfig.nvim', 
+    'williamboman/mason-lspconfig.nvim',
     dependencies = {
-      'williamboman/mason.nvim', 
+      'williamboman/mason.nvim',
       'neovim/nvim-lspconfig',
     },
     opts = {
@@ -109,7 +136,9 @@ return {
     },
     config = function()
       require('mason').setup()
-      require('mason-lspconfig').setup()
+      require('mason-lspconfig').setup {
+        ensure_installed = { 'html', 'ts_ls', 'cssls', 'jsonls' },
+      }
     end,
   },
 }
