@@ -25,7 +25,7 @@ function M:setup()
       '-data',
       workspace_dir,
     },
-    root_dir = require('jdtls.setup').find_root { '.git', 'mvnw', 'gradlew' },
+    root_dir = require('jdtls.setup').find_root { 'gradlew' },
     settings = {
       java = {},
     },
