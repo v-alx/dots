@@ -51,6 +51,11 @@ return {
 
       -- basedpyright
       vim.lsp.config('basedpyright', {
+        capabilities = capabilities,
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
         settings = {
           basedpyright = {
             analysis = {
@@ -69,6 +74,15 @@ return {
         },
       })
 
+      -- ruff (formatting only)
+      vim.lsp.config('ruff', {
+        capabilities = capabilities,
+        on_attach = function(client)
+          client.handlers['textDocument/publishDiagnostics'] = function() end
+          client.server_capabilities.codeActionProvider = false
+        end,
+      })
+
       vim.lsp.config('ts_ls', {
         capabilities = capabilities,
       })
@@ -82,6 +96,8 @@ return {
 
       -- TODO:
       -- rust_analyser
+
+      -- zk
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
@@ -137,7 +153,7 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'html', 'ts_ls', 'cssls', 'jsonls' },
+        ensure_installed = { 'basedpyright', 'ruff', 'html', 'ts_ls', 'cssls', 'jsonls' },
       }
     end,
   },

@@ -32,3 +32,11 @@ vim.diagnostic.config {
     source = true,
   },
 }
+
+local neon = "#39FF14"
+
+vim.api.nvim_set_hl(0, "Cursor", { fg = "#050707", bg = neon })
+vim.api.nvim_set_hl(0, "Visual", { fg = "#050707", bg = neon })
+vim.api.nvim_set_hl(0, "Search", { fg = "#050707", bg = neon })
+vim.api.nvim_set_hl(0, "IncSearch", { fg = "#050707", bg = neon })
+vim.api.nvim_set_hl(0, "MatchParen", { fg = "#050707", bg = neon, bold = true })

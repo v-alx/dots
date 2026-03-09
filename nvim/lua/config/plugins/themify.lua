@@ -6,6 +6,9 @@ return {
     priority = 999,
     config = function()
       require('themify').setup {
+        "neongreen",
+        "jpwol/thorn.nvim",
+        "iruzo/matrix-nvim",
         'folke/tokyonight.nvim',
         'sho-87/kanagawa-paper.nvim',
         'comfysage/evergarden',

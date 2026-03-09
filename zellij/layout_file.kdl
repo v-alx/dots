@@ -18,14 +18,25 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-
     tab name="Terminal" {
         pane borderless=true
     }
-
     tab name="Editor" {
         pane borderless=true {
             command "nvim"
+            args "./"
         }
+    }
+    // tab name="AI" {
+    //     pane borderless=true {
+    //         command "codex"
+    //         args "--sandbox" "read-only"
+    //     }
+    // }
+    tab name="Test" {
+				pane split_direction="vertical" {
+						pane borderless=true 
+						pane borderless=true 
+				}
     }
 }
