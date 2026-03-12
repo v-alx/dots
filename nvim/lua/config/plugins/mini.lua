@@ -1,7 +1,6 @@
 return {
   {
     'echasnovski/mini.nvim',
-    enabled = true,
     config = function()
       require('mini.statusline').setup { use_icons = true }
       require('mini.tabline').setup()
@@ -13,8 +12,6 @@ return {
         require('mini.files').open(vim.api.nvim_buf_get_name(0), false)
         require('mini.files').reveal_cwd()
       end, { desc = 'Toggle file explorer into currently opened file' })
-      -- require('mini.starter').setup()
-      -- require('mini.notify').setup()
     end,
   },
 }

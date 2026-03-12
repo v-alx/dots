@@ -1,0 +1,47 @@
+{
+	"Python cell": {
+		"prefix": "pycell",
+		"body": [
+			"```{python}",
+			"$0",
+			"```"
+		],
+		"description": "Insert a Python Quarto cell"
+	},
+	"Python cell with options": {
+		"prefix": "pycello",
+		"body": [
+			"```{python}",
+			"#| echo: false",
+			"$0",
+			"```"
+		],
+		"description": "Insert a Python Quarto cell with options"
+	},
+	"Bash cell": {
+		"prefix": "shcell",
+		"body": [
+			"```{bash}",
+			"$0",
+			"```"
+		],
+		"description": "Insert a Bash Quarto cell"
+	},
+	"Notebook skeleton": {
+		"prefix": "qnb",
+		"body": [
+			"---",
+			"title: \"${1:Notebook title}\"",
+			"format: html",
+			"jupyter: nvim-python",
+			"---",
+			"",
+			"# ${2:Section}",
+			"",
+			"```{python}",
+			"$0",
+			"```"
+		],
+		"description": "Insert a Quarto notebook skeleton"
+	}
+}

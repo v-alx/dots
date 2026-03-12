@@ -7,13 +7,7 @@ return {
       dashboard = { enabled = true, example = 'files' },
       indent = { enabled = true },
       quickfile = { enabled = true },
-      -- dim = { enabled = false },
-      -- scroll = { enabled = true },
-      -- gitbrowse = { enabled = false },
-      -- terminal = { enabled = false },
-      win = {
-        enabled = true,
-      },
+      win = { enabled = true },
       words = { enabled = true },
     },
     keys = {

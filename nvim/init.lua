@@ -1,3 +1,8 @@
+vim.g.python3_host_prog = vim.fn.expand("~/.venvs/nvim/bin/python")
+package.path = package.path
+    .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
+    .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+
 require 'config.lazy'
 
 vim.opt.shiftwidth = 4
@@ -12,6 +17,7 @@ vim.keymap.set('v', '<space>x', ':lua<CR>')
 
 vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>')
 vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>')
+
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -32,11 +38,3 @@ vim.diagnostic.config {
     source = true,
   },
 }
-
-local neon = "#39FF14"
-
-vim.api.nvim_set_hl(0, "Cursor", { fg = "#050707", bg = neon })
-vim.api.nvim_set_hl(0, "Visual", { fg = "#050707", bg = neon })
-vim.api.nvim_set_hl(0, "Search", { fg = "#050707", bg = neon })
-vim.api.nvim_set_hl(0, "IncSearch", { fg = "#050707", bg = neon })
-vim.api.nvim_set_hl(0, "MatchParen", { fg = "#050707", bg = neon, bold = true })
